@@ -42,7 +42,7 @@ namespace ScoreTracker
             {
                 Console.WriteLine("Round #{0}", round);
                 int bonusBall = 0;
-                int maxBalls = 2;
+                int maxBalls = round < 10 ? 3 : 2;
                 int standingPins = 10;
                 for (int ball = 1; ball <= maxBalls; ball++)
                 {
@@ -56,13 +56,14 @@ namespace ScoreTracker
                         if (standingPins == 0)
                         {
                             frame = FramesEnum.Strike;
+
                             if (round < 10)
                             {
                                 ball++;
                             }
                             else
                             {
-                                //ball--;//bonusBall++;
+                                bonusBall++;
                             }
                         }
                         else
