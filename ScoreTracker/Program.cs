@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace ScoreTracker
 {
@@ -6,7 +8,8 @@ namespace ScoreTracker
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            BowlingGame game = new BowlingGame();
+            game.Go();
         }
     }
 }
