@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2019
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScoreTracker", "ScoreTracker\ScoreTracker.csproj", "{672C0745-5989-479B-8250-54FF7D22F16D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingGame", "BowlingGame\BowlingGame.csproj", "{73E6D4D2-0D8B-41A0-BB64-66C3C4629AFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{672C0745-5989-479B-8250-54FF7D22F16D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{672C0745-5989-479B-8250-54FF7D22F16D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{672C0745-5989-479B-8250-54FF7D22F16D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{672C0745-5989-479B-8250-54FF7D22F16D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73E6D4D2-0D8B-41A0-BB64-66C3C4629AFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73E6D4D2-0D8B-41A0-BB64-66C3C4629AFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73E6D4D2-0D8B-41A0-BB64-66C3C4629AFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73E6D4D2-0D8B-41A0-BB64-66C3C4629AFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

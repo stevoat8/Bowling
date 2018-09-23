@@ -1,26 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace ScoreTracker
+namespace Bowling
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //List<Bowler> bowlers = Registration();
+            IList<Game> games = new List<Game>();
 
-            //TODO: Nur zu Testzwecken. Wieder raus
+            //List<Bowler> bowlers = Registration();
             List<Bowler> bowlers = bowlers = new List<Bowler>() {
-                new Bowler(1,"Body"),
+                new Bowler(1,"Bodie"),
                 //new Bowler(2,"Doyle"),
                 //new Bowler(3,"Tiger"),
                 //new Bowler(4,"Jewls")
             };
 
-            BowlingGame game = new BowlingGame(bowlers);
-            game.Start();
-            game.ShowFinalScore();
+            foreach (Bowler bowler in bowlers)
+            {
+                games.Add(new Game(bowler));
+            }
+
+            foreach (Game game in games)
+            {
+                game.Play();
+            }
+
+            foreach (Game game in games)
+            {
+                game.GetAllScores();
+                //Console.WriteLine($"#{game.Bowler.Nr} ({game.Bowler.Name}): {game.GetFinalScore()}");
+            }
 
             Console.ReadKey();
         }

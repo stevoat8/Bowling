@@ -43,11 +43,6 @@ namespace ScoreTracker
             return knockedDownPins;
         }
 
-        /// <summary>
-        /// Calculates the bowler's score after the passed round.
-        /// </summary>
-        /// <param name="round"></param>
-        /// <returns>The bowler's score at the end of the passed round.</returns>
         internal int GetScore()
         {
             int totalScore = 0;
