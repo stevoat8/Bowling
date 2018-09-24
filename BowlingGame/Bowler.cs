@@ -59,25 +59,13 @@ namespace Bowling
         internal int Roll(int pinsStanding)
         {
             int knockedDownPins = rdm.Next(pinsStanding + 1);
-            knockedDownPins = 10; //Always strikes
+            //knockedDownPins = 10; //Always strikes
             return knockedDownPins;
         }
-
-        internal int GetFinalScore()
+        
+        internal void PrintFrameScore(int i)
         {
-            return scoreBoard.GetFrameScore(10);
-        }
-
-        internal void PrintAllScores()
-        {
-            for (int i = 1; i <= 10; i++)
-            {
-                Console.WriteLine($"#{Nr} {Name}");
-                Console.WriteLine("     1  2  3");
-                Console.WriteLine("---------------");
-                int score = scoreBoard.GetFrameScore(i);
-                Console.WriteLine("_______________\n");
-            }
+            scoreBoard.PrintFrameScore(i);
         }
     }
 }

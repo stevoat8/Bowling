@@ -10,7 +10,7 @@ namespace Bowling
             //List<Bowler> bowlers = Registration();
             List<Bowler> bowlers = bowlers = new List<Bowler>() {
                 new Bowler(1,"Bodie"),
-                //new Bowler(2,"Doyle"),
+                new Bowler(2,"Doyle"),
                 //new Bowler(3,"Tiger"),
                 //new Bowler(4,"Jewls")
             };
@@ -20,15 +20,20 @@ namespace Bowling
                 bowler.Play();
             }
 
-            foreach (Bowler bowler in bowlers)
+            for (int i = 1; i <= 10; i++)
             {
-                bowler.PrintAllScores();
-                //Console.WriteLine($"#{game.Bowler.Nr} ({game.Bowler.Name}): {game.GetFinalScore()}");
+                foreach (Bowler bowler in bowlers)
+                {
+                    Console.WriteLine($"Bowler #{bowler.Nr} {bowler.Name}");
+                    Console.WriteLine("     1  2  3");
+                    Console.WriteLine("---------------");
+                    bowler.PrintFrameScore(i);
+                    Console.WriteLine("_______________\n");
+                }
             }
 
             Console.ReadKey();
         }
-
 
         #region Registration
 

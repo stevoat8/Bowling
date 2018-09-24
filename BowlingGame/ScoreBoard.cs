@@ -23,7 +23,7 @@ namespace Bowling
             scores[frame - 1][ball - 1] = knockedDownPins;
         }
 
-        internal int GetFrameScore(int frameNr)
+        internal void PrintFrameScore(int frameNr)
         {
             int finalScore = 0;
             for (int frameIndex = 0; frameIndex < frameNr; frameIndex++)
@@ -47,7 +47,7 @@ namespace Bowling
                 finalScore += frameScore;
             }
             PrintFinalScore(finalScore);
-            return finalScore;
+            //return finalScore;
         }
 
         private int GetBaseFrameScore(int frameIndex)
