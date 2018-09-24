@@ -44,13 +44,15 @@ namespace Bowling
             return ScoreBoard.GetScore(10);
         }
 
-        internal void GetAllScores()
+        internal void PrintAllScores()
         {
             for (int i = 1; i <= 10; i++)
             {
-                Console.WriteLine("#" + i + ":");
+                Console.WriteLine(Bowler.Name);
+                Console.WriteLine("     1  2  3");
+                Console.WriteLine("---------------");
                 int score = ScoreBoard.GetScore(i);
-                Console.WriteLine("____________________");
+                Console.WriteLine("_______________\n");
             }
         }
     }

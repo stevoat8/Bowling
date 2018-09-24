@@ -25,20 +25,19 @@ namespace Bowling
 
         internal int GetScore(int lastFrame)
         {
-            //TODO: Spares werden eventuell nicht richtig gewertet! Debuggen
             int finalScore = 0;
             for (int frameIndex = 0; frameIndex < lastFrame; frameIndex++)
             {
                 int baseFrameScore = GetBaseFrameScore(frameIndex);
 
                 int extraFrames = 0; //Additionally evaluated frames
-                if (scores[frameIndex][0] == 10)
+                if (scores[frameIndex][0] == 10) // Strike
                 {
-                    extraFrames = 2; // Strike
+                    extraFrames = 2;
                 }
-                else if (scores[frameIndex][1] == 10)
+                else if (baseFrameScore == 10) // Spare
                 {
-                    extraFrames = 1; // Spare
+                    extraFrames = 1;
                 }
 
                 int extraFrameScore = 0;
@@ -57,36 +56,50 @@ namespace Bowling
                     {
                         extraFrameScore += scores[9][extraFrame];
                     }
-
                 }
 
                 int totalFrameScore = baseFrameScore + extraFrameScore;
-                Console.WriteLine("{0,2}: {1}", frameIndex + 1, totalFrameScore);
                 finalScore += totalFrameScore;
+
+                PrintIntermediateScore(frameIndex, totalFrameScore);
             }
-            Console.WriteLine($"-------\n    {finalScore}");
+            PrintFinalScore(finalScore);
             return finalScore;
         }
 
         private int GetBaseFrameScore(int frameIndex)
         {
             int baseScore = 0;
-            if (frameIndex == 9)
+            if (frameIndex == 9 && scores[9][0] == 10)
             {
-                if (scores[9][0] == 10)
-                {
-                    baseScore = 10;
-                }
-                else
-                {
-                    baseScore = scores[9][0] + scores[9][1]; ;
-                }
+                baseScore = 10;
             }
             else
             {
-                baseScore = scores[frameIndex].Sum();
+                baseScore = scores[frameIndex][0] + scores[frameIndex][1];
             }
             return baseScore;
+        }
+
+        private void PrintIntermediateScore(int frameIndex, int totalFrameScore)
+        {
+            int frameNr = frameIndex + 1;
+            string ball1Score = scores[frameIndex][0].ToString();
+            string ball2Score = scores[frameIndex][1].ToString();
+            string ball3Score = frameIndex == 9 ? scores[9][2].ToString() : "";
+
+            Console.WriteLine("{0,2}: {1,2} {2,2} {3,2} {4,2}",
+                                frameNr,
+                                ball1Score,
+                                ball2Score,
+                                ball3Score,
+                                totalFrameScore);
+        }
+
+        private void PrintFinalScore(int finalScore)
+        {
+            Console.WriteLine("---------------");
+            Console.WriteLine("     Total: {0,3}", finalScore);
         }
     }
 }

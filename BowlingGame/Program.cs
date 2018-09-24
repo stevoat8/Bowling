@@ -31,7 +31,7 @@ namespace Bowling
 
             foreach (Game game in games)
             {
-                game.GetAllScores();
+                game.PrintAllScores();
                 //Console.WriteLine($"#{game.Bowler.Nr} ({game.Bowler.Name}): {game.GetFinalScore()}");
             }
 
