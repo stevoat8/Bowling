@@ -33,6 +33,7 @@ namespace Bowling
         internal int Roll(int pinsStanding)
         {
             int knockedDownPins = rdm.Next(pinsStanding + 1);
+            //knockedDownPins = 10; //Always strikes
             return knockedDownPins;
         }
     }

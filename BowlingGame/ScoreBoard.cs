@@ -23,45 +23,28 @@ namespace Bowling
             scores[frame - 1][ball - 1] = knockedDownPins;
         }
 
-        internal int GetScore(int lastFrame)
+        internal int GetFrameScore(int frameNr)
         {
             int finalScore = 0;
-            for (int frameIndex = 0; frameIndex < lastFrame; frameIndex++)
+            for (int frameIndex = 0; frameIndex < frameNr; frameIndex++)
             {
-                int baseFrameScore = GetBaseFrameScore(frameIndex);
+                int frameScore = GetBaseFrameScore(frameIndex);
 
-                int extraFrames = 0; //Additionally evaluated frames
-                if (scores[frameIndex][0] == 10) // Strike
-                {
-                    extraFrames = 2;
-                }
-                else if (baseFrameScore == 10) // Spare
-                {
-                    extraFrames = 1;
-                }
+                int extraEvaluatedFrames = GetExtraEvaluatedFramesCount(frameNr, frameIndex, frameScore);
 
-                int extraFrameScore = 0;
-                for (int extraFrame = 1; extraFrame <= extraFrames; extraFrame++)
+                for (int extraFrame = 1; extraFrame <= extraEvaluatedFrames; extraFrame++)
                 {
-                    int extraFrameIndex = frameIndex + extraFrame;
-                    if (frameIndex == 8 && lastFrame == 9)
+                    if (frameIndex == 9 || (frameIndex == 8 && extraFrame == 2))
                     {
-                        break;
+                        frameScore += scores[9][extraFrame];
                     }
-                    else if (extraFrameIndex < lastFrame || (frameIndex == 8 && extraFrame == 1))
+                    else
                     {
-                        extraFrameScore += GetBaseFrameScore(extraFrameIndex);
-                    }
-                    else if (frameIndex == 9 || (frameIndex == 8 && extraFrame == 2)) //last frame
-                    {
-                        extraFrameScore += scores[9][extraFrame];
+                        frameScore += GetBaseFrameScore(frameIndex + extraFrame);
                     }
                 }
-
-                int totalFrameScore = baseFrameScore + extraFrameScore;
-                finalScore += totalFrameScore;
-
-                PrintIntermediateScore(frameIndex, totalFrameScore);
+                PrintIntermediateScore(frameIndex, frameScore);
+                finalScore += frameScore;
             }
             PrintFinalScore(finalScore);
             return finalScore;
@@ -79,6 +62,29 @@ namespace Bowling
                 baseScore = scores[frameIndex][0] + scores[frameIndex][1];
             }
             return baseScore;
+        }
+
+        private int GetExtraEvaluatedFramesCount(int frameNr, int frameIndex, int frameScore)
+        {
+            int extraEvaluatedFrames = 0;
+            if (scores[frameIndex][0] == 10) // Strike
+            {
+                extraEvaluatedFrames = 2;
+            }
+            else if (frameScore == 10) // Spare
+            {
+                extraEvaluatedFrames = 1;
+            }
+
+            //If additionally Frames would be evaluated, but their indexes would be out of bound, they are not evaluated.
+            //Exception #1: The extra frames for frame #10 are the frame's own indexes.
+            //Exception #2: The 2nd extra frame for frame #9 is the 3rd Index of frame #10.
+            if ((frameNr == 10 || (frameNr == 10 && frameIndex == 8 && extraEvaluatedFrames == 2)) == false)
+            {
+                extraEvaluatedFrames = Math.Min(frameNr - 1 - frameIndex, extraEvaluatedFrames);
+            }
+
+            return extraEvaluatedFrames;
         }
 
         private void PrintIntermediateScore(int frameIndex, int totalFrameScore)

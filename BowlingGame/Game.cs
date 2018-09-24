@@ -41,17 +41,17 @@ namespace Bowling
 
         internal int GetFinalScore()
         {
-            return ScoreBoard.GetScore(10);
+            return ScoreBoard.GetFrameScore(10);
         }
 
         internal void PrintAllScores()
         {
             for (int i = 1; i <= 10; i++)
             {
-                Console.WriteLine(Bowler.Name);
+                Console.WriteLine($"#{Bowler.Nr} {Bowler.Name}");
                 Console.WriteLine("     1  2  3");
                 Console.WriteLine("---------------");
-                int score = ScoreBoard.GetScore(i);
+                int score = ScoreBoard.GetFrameScore(i);
                 Console.WriteLine("_______________\n");
             }
         }
